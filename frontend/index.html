@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Camera browser</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+  <script src="assets/js/angular-route.js"></script>
+  <script src="assets/js/ui-bootstrap-tpls-0.12.1.js"></script>
+  
+  <script src="app/app.js"></script>
+  
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  
+</head>
+<body ng-app="myApp">
+
+  <div ng-controller="CamGetter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <pre>Selected date/time is: <em>{{dt | date:'fullDate' }} {{starttime | date:'shortTime' }} THROUGH {{endtime | date:'shortTime' }}</em></pre> -->
+        </div> <!-- END col-md-12 -->
+      </div> <!-- END row -->
+      <div class="row">
+        <div class="col-md-12"> 
+          <select ng-model="dropdowns.country" ng-options="value for value in dropdowns.countries" ng-change="dropdownChange()">
+            color.name for color in colors
+            <option value="">Select Country</option>
+          </select>
+          <select ng-model="dropdowns.city" ng-options="value for value in dropdowns.cities" ng-change="dropdownChange()">
+            <option value="">Select City</option>
+          </select>
+          <select ng-model="dropdowns.region" ng-options="value for value in dropdowns.regions" ng-change="dropdownChange()">
+            <option value="">Select Region</option>
+          </select>
+          <select ng-model="dropdowns.tags" ng-options="value for value in dropdowns.tags" ng-change="dropdownChange()">
+            <option value="">Select Tags</option>
+          </select>
+        </div>
+      </div>
+
+        <div class="col-md-12">
+          
+          <hr>
+
+          <button class="btn btn-info" ng-click="toggleMode()">Toggle Daytime</button>
+          <button class="btn btn-default" ng-click="update()">Set to daylight hours</button>
+          <button class="btn btn-default" ng-click="loadmenus()">get menus</button>
+          <button class="btn btn-danger" ng-click="clear()">Clear</button>
+          <button class="btn btn-danger" ng-click="timechanged()">Submit</button>
+          
+        </div> <!-- END col-md-6 -->
+        
+        <div class="col-md-12">
+          <hr>
+          
+          <table border=1>
+            <tr><th>URL</th><th>Tags</th></tr>
+            <tr ng-repeat="match in matches">
+              <td><a ng-href="{{ 'http://' + match.host + ':' + match.port }}">{{ match.host + ':' + match.port + match.path }}</a></td><td>{{ match.tags }}</td>
+            </tr>
+          </table>
+        </div> <!-- END col-md-12 -->
+      </div> <!-- END row -->
+    </div> <!-- END container -->
+  </div> <!-- END ng-controller (EventGetter) -->
+    
+</body>
+</html>
